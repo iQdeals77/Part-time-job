@@ -1,0 +1,673 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register Account - SkillEarn Hub</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        body {
+            background-color: #f4f6f8;
+            color: #2b2b2b;
+            padding-bottom: 40px;
+        }
+
+        .navbar {
+            background-color: #ffffff;
+            padding: 15px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.04);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .logo-container {
+            display: flex;
+            align-items: center;
+            text-decoration: none;
+        }
+
+        .logo-text-wrapper {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .logo-main {
+            font-size: 21px;
+            font-weight: 700;
+            color: #074358;
+            line-height: 1.1;
+            display: flex;
+            align-items: center;
+        }
+
+        .logo-main .big-s {
+            font-size: 30px;
+            color: #0b5a75;
+            margin-right: 1px;
+        }
+
+        .logo-sub {
+            font-size: 8.5px;
+            font-weight: 700;
+            color: #074358;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+            margin-top: 2px;
+        }
+
+        .nav-actions {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+        }
+
+        .top-help-btn {
+            background-color: #074358;
+            color: #ffffff;
+            border: none;
+            padding: 7px 14px;
+            border-radius: 20px;
+            font-size: 13px;
+            font-weight: 500;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .page-banner {
+            background-color: #074358;
+            color: #ffffff;
+            text-align: center;
+            padding: 45px 20px;
+        }
+
+        .page-banner h1 {
+            font-size: 28px;
+            font-weight: 600;
+        }
+
+        .container {
+            max-width: 600px;
+            margin: 25px auto;
+            padding: 0 15px;
+        }
+
+        .package-box {
+            background-color: #ffffff;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+            overflow: hidden;
+            padding-bottom: 24px;
+        }
+
+        .package-header {
+            padding: 20px 25px;
+            border-bottom: 1px solid #eeeeee;
+        }
+
+        .package-header h2 {
+            font-size: 20px;
+            font-weight: 600;
+            color: #333333;
+        }
+
+        .package-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 16px;
+            padding: 22px;
+        }
+
+        .package-card {
+            background-color: #ffffff;
+            border: 1.5px solid #e6e8eb;
+            border-radius: 12px;
+            padding: 18px 12px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.25s ease;
+        }
+
+        .package-card:hover {
+            transform: translateY(-3px);
+            border-color: #074358;
+        }
+
+        .package-card.selected {
+            border: 2.5px solid #074358;
+            background-color: #eef7fa;
+        }
+
+        .box-mockup {
+            width: 90px;
+            height: 118px;
+            margin: 0 auto 12px auto;
+            border-radius: 6px;
+            color: #ffffff;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 8px;
+            box-shadow: -6px 6px 12px rgba(0,0,0,0.18);
+        }
+
+        .box-purple { background: linear-gradient(135deg, #7b2cbf, #5a189a); border-left: 8px solid #3c096c; }
+        .box-red { background: linear-gradient(135deg, #d90429, #9b2226); border-left: 8px solid #590d22; }
+        .box-blue { background: linear-gradient(135deg, #0077b6, #023e8a); border-left: 8px solid #03045e; }
+        .box-gold { background: linear-gradient(135deg, #e09f3e, #9e2a2b); border-left: 8px solid #540b0e; }
+
+        .box-icon { font-size: 20px; margin-bottom: 6px; opacity: 0.9; }
+        .box-title { font-size: 12px; font-weight: 700; line-height: 1.25; text-align: center; }
+        .package-name { font-size: 16px; font-weight: 600; color: #222222; }
+        .package-fee-tag {
+            display: inline-block;
+            margin-top: 5px;
+            background-color: #eef7fa;
+            color: #074358;
+            font-size: 12.5px;
+            font-weight: 700;
+            padding: 2px 10px;
+            border-radius: 12px;
+        }
+
+        .register-btn-wrapper { padding: 0 22px; margin-top: 4px; }
+        .main-register-btn {
+            width: 100%;
+            background-color: #074358;
+            color: #ffffff;
+            border: none;
+            padding: 15px;
+            border-radius: 10px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 8px;
+        }
+
+        #registrationFormPage { display: none; }
+
+        .form-card {
+            background-color: #ffffff;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+            padding: 24px 22px;
+        }
+
+        .back-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            color: #074358;
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            margin-bottom: 18px;
+        }
+
+        .selected-skill-badge {
+            background-color: #eef7fa;
+            border: 1px solid #b8dce8;
+            color: #074358;
+            padding: 12px 15px;
+            border-radius: 8px;
+            font-size: 14px;
+            font-weight: 600;
+            margin-bottom: 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .form-group { margin-bottom: 16px; }
+        .form-group label {
+            display: block;
+            font-size: 13.5px;
+            font-weight: 600;
+            color: #333333;
+            margin-bottom: 6px;
+        }
+
+        .form-group input {
+            width: 100%;
+            padding: 12px 14px;
+            border: 1.5px solid #dce1e7;
+            border-radius: 8px;
+            font-size: 14px;
+            outline: none;
+        }
+
+        .fee-summary {
+            background-color: #f8fafc;
+            border: 1px dashed #cbd5e1;
+            border-radius: 8px;
+            padding: 14px;
+            margin: 20px 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .qr-container {
+            text-align: center;
+            margin: 20px 0;
+            background: #fdfdfd;
+            border: 1px solid #e2e8f0;
+            padding: 15px;
+            border-radius: 10px;
+        }
+
+        .qr-container img {
+            width: 150px;
+            height: 150px;
+            object-fit: contain;
+            margin-top: 8px;
+        }
+
+        .payment-proof-box {
+            background: #f1f5f9;
+            border: 1.5px dashed #94a3b8;
+            padding: 15px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+        }
+
+        .pay-fee-btn {
+            width: 100%;
+            background: linear-gradient(135deg, #0b7a4b, #065f39);
+            color: #ffffff;
+            border: none;
+            padding: 16px;
+            border-radius: 10px;
+            font-size: 17px;
+            font-weight: 700;
+            cursor: pointer;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .help-page-overlay {
+            display: none;
+            position: fixed;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            background-color: #f4f6f8;
+            z-index: 9999;
+            overflow-y: auto;
+        }
+
+        .help-page-header {
+            background-color: #074358;
+            color: #ffffff;
+            padding: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .close-help-btn {
+            background: rgba(255, 255, 255, 0.2);
+            color: #ffffff;
+            border: none;
+            width: 34px; height: 34px;
+            border-radius: 50%;
+            font-size: 18px;
+            cursor: pointer;
+        }
+
+        .help-content-card {
+            max-width: 580px;
+            margin: 25px auto;
+            background-color: #ffffff;
+            padding: 28px 24px;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.06);
+            line-height: 1.7;
+        }
+
+        .skill-list {
+            background-color: #f0f7fa;
+            border-left: 4px solid #074358;
+            padding: 14px 18px;
+            border-radius: 6px;
+            margin-bottom: 18px;
+        }
+        .skill-list ul { list-style-type: none; }
+        .skill-list li { font-weight: 600; color: #074358; margin-bottom: 6px; }
+
+        .highlight-box {
+            background-color: #fff8e6;
+            border: 1px solid #ffe082;
+            padding: 14px;
+            border-radius: 8px;
+            font-size: 14.5px;
+            color: #5c4300;
+            margin-bottom: 18px;
+        }
+
+        .back-btn {
+            display: block;
+            width: 100%;
+            background-color: #074358;
+            color: #ffffff;
+            border: none;
+            padding: 12px;
+            border-radius: 8px;
+            font-size: 15px;
+            font-weight: 600;
+            cursor: pointer;
+            margin-top: 20px;
+        }
+
+        /* Popups Style */
+        .result-modal {
+            display: none;
+            position: fixed;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            background: rgba(0, 0, 0, 0.6);
+            z-index: 10000;
+            justify-content: center;
+            align-items: center;
+            padding: 15px;
+            backdrop-filter: blur(2px);
+        }
+
+        .result-modal-box {
+            background: #ffffff;
+            width: 100%;
+            max-width: 360px;
+            border-radius: 16px;
+            padding: 28px 22px;
+            text-align: center;
+            box-shadow: 0 12px 30px rgba(0,0,0,0.22);
+            animation: popIn 0.25s ease-out;
+        }
+
+        @keyframes popIn {
+            from { transform: scale(0.88); opacity: 0; }
+            to { transform: scale(1); opacity: 1; }
+        }
+    </style>
+</head>
+<body>
+
+    <header class="navbar">
+        <a href="#" class="logo-container" onclick="goBackToSkills()">
+            <div class="logo-text-wrapper">
+                <div class="logo-main">
+                    <span class="big-s"><i class="fa-solid fa-briefcase" style="font-size: 14px; display: block; margin-bottom: -4px;"></i>S</span>killEarn Hub
+                </div>
+                <span class="logo-sub">WORK FROM HOME &amp; PART-TIME PORTAL</span>
+            </div>
+        </a>
+
+        <div class="nav-actions">
+            <button class="top-help-btn" onclick="openHelpPage()">
+                <i class="fa-solid fa-circle-question"></i> Help
+            </button>
+        </div>
+    </header>
+
+    <section class="page-banner">
+        <h1 id="bannerTitle">Register Account</h1>
+    </section>
+
+    <!-- STEP 1: Skills -->
+    <main class="container" id="skillSelectionPage">
+        <div class="package-box">
+            <div class="package-header">
+                <h2>Select Your Skill Category</h2>
+            </div>
+
+            <div class="package-grid">
+                <div class="package-card" onclick="selectPackage(this, 'Typing Job', 299)">
+                    <div class="box-mockup box-purple">
+                        <i class="fa-solid fa-keyboard box-icon"></i>
+                        <span class="box-title">Typing<br>Job</span>
+                    </div>
+                    <div class="package-name">Typing Job</div>
+                    <span class="package-fee-tag">Fee: ₹299</span>
+                </div>
+
+                <div class="package-card" onclick="selectPackage(this, 'Video Editing', 399)">
+                    <div class="box-mockup box-red">
+                        <i class="fa-solid fa-video box-icon"></i>
+                        <span class="box-title">Video<br>Editing</span>
+                    </div>
+                    <div class="package-name">Video Editing</div>
+                    <span class="package-fee-tag">Fee: ₹399</span>
+                </div>
+
+                <div class="package-card" onclick="selectPackage(this, 'Data Entry', 499)">
+                    <div class="box-mockup box-blue">
+                        <i class="fa-solid fa-table box-icon"></i>
+                        <span class="box-title">Data<br>Entry</span>
+                    </div>
+                    <div class="package-name">Data Entry</div>
+                    <span class="package-fee-tag">Fee: ₹499</span>
+                </div>
+
+                <div class="package-card" onclick="selectPackage(this, 'T-Shirt Design', 499)">
+                    <div class="box-mockup box-gold">
+                        <i class="fa-solid fa-shirt box-icon"></i>
+                        <span class="box-title">T-Shirt<br>Design</span>
+                    </div>
+                    <div class="package-name">T-Shirt Design</div>
+                    <span class="package-fee-tag">Fee: ₹499</span>
+                </div>
+            </div>
+
+            <div class="register-btn-wrapper">
+                <button class="main-register-btn" onclick="openRegistrationForm()">
+                    Register Account <i class="fa-solid fa-arrow-right"></i>
+                </button>
+            </div>
+        </div>
+    </main>
+
+    <!-- STEP 2: Form -->
+    <section class="container" id="registrationFormPage">
+        <div class="form-card">
+            <div class="back-link" onclick="goBackToSkills()">
+                <i class="fa-solid fa-arrow-left"></i> Change Skill
+            </div>
+
+            <div class="selected-skill-badge">
+                <span>Selected Skill:</span>
+                <span id="displaySelectedSkill" style="font-weight: 700;">Typing Job</span>
+            </div>
+
+            <form id="userRegForm" onsubmit="handleVerification(event)">
+                <div class="form-group">
+                    <label>Email Address *</label>
+                    <input type="email" id="emailAddress" placeholder="Enter your email ID" required>
+                </div>
+
+                <div class="form-group">
+                    <label>City &amp; State *</label>
+                    <input type="text" id="cityState" placeholder="e.g. Agra, Uttar Pradesh" required>
+                </div>
+
+                <div class="form-group">
+                    <label>Create Password *</label>
+                    <input type="password" id="userPassword" placeholder="Create a strong password" required>
+                </div>
+
+                <div class="fee-summary">
+                    <span>One-Time Registration Fee:</span>
+                    <strong id="displayFeeSummary">₹299</strong>
+                </div>
+
+                <!-- Aapka Asli QR Code Yahan Dikhega -->
+                <div class="qr-container">
+                    <span id="qrAmountText" style="font-size: 13.5px; font-weight: 600; color: #074358;">Scan QR Code to Pay ₹299</span>
+                    <div>
+                        <img id="qrCodeImage" src="myqr.jpg" alt="Scan QR Code to Pay" style="width: 170px; height: 170px; object-fit: contain; border-radius: 8px;">
+                    </div>
+                    <p style="font-size: 11.5px; color: #64748b; margin-top: 6px;">Scan using PhonePe, GPay, Paytm or any UPI App</p>
+                </div>
+
+                <div class="payment-proof-box">
+                    <label style="font-size: 14px; font-weight: 600; color: #1e293b; margin-bottom: 6px; display: block;">
+                        <i class="fa-solid fa-receipt"></i> Payment Proof (Upload Screenshot) *
+                    </label>
+                    <input type="file" id="paymentProofFile" accept="image/*" required style="font-size: 13px;">
+                </div>
+
+                <button type="submit" id="payFeeButton" class="pay-fee-btn">
+                    <i class="fa-solid fa-lock"></i> Register Fee ₹299 - Pay
+                </button>
+            </form>
+        </div>
+    </section>
+
+    <!-- Loading Popup: Checking your screenshot -->
+    <div id="checkingModal" class="result-modal">
+        <div class="result-modal-box">
+            <div style="margin-bottom: 15px;">
+                <i class="fa-solid fa-spinner fa-spin" style="font-size: 40px; color: #074358;"></i>
+            </div>
+            <h3 style="color: #074358; font-size: 18px; font-weight: 700; margin-bottom: 6px;">Checking your screenshot...</h3>
+            <p style="font-size: 13.5px; color: #666;">Please wait while we verify your payment proof.</p>
+        </div>
+    </div>
+
+    <!-- Error Popup: This is not your payment screenshot -->
+    <div id="resultModal" class="result-modal">
+        <div class="result-modal-box">
+            <i class="fa-solid fa-triangle-exclamation" style="font-size: 45px; color: #dc2626; margin-bottom: 12px;"></i>
+            <h3 style="color: #1e293b; font-size: 18px; margin-bottom: 8px;">Verification Failed</h3>
+            <p style="font-size: 14px; color: #dc2626; font-weight: 600; margin-bottom: 20px;">This is not your payment screenshot</p>
+            <button class="main-register-btn" onclick="closeResultModal()">
+                Try Again
+            </button>
+        </div>
+    </div>
+
+    <!-- Custom Popup: Please Select Your Job -->
+    <div id="selectJobModal" class="result-modal">
+        <div class="result-modal-box">
+            <div style="width: 60px; height: 60px; background: #eef7fa; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 14px auto;">
+                <i class="fa-solid fa-hand-pointer" style="font-size: 28px; color: #074358;"></i>
+            </div>
+            <h3 style="color: #074358; font-size: 20px; font-weight: 700; margin-bottom: 8px;">Please select your job</h3>
+            <p style="font-size: 14px; color: #555555; margin-bottom: 20px;">Choose any one skill category from the list before clicking Register Account.</p>
+            <button class="main-register-btn" onclick="closeSelectJobModal()">
+                OK, Select Now
+            </button>
+        </div>
+    </div>
+
+    <!-- Help Page -->
+    <div id="helpPage" class="help-page-overlay">
+        <div class="help-page-header">
+            <h2><i class="fa-solid fa-circle-info"></i> Help &amp; Work Details</h2>
+            <button class="close-help-btn" onclick="closeHelpPage()">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+        </div>
+
+        <div class="help-content-card">
+            <p>Aapko part-time kaam karna hai? Hamare paas aapke liye kaam hai! Aap hamara kaam complete karein, hum aapko ek achi salary de sakte hain.</p>
+            <p style="font-weight: 600; margin-bottom: 8px;">Aapko kuch skills aani chahiye, jaise:</p>
+            <div class="skill-list">
+                <ul>
+                    <li><i class="fa-solid fa-check-circle"></i> Good Typing</li>
+                    <li><i class="fa-solid fa-check-circle"></i> Video Editing</li>
+                    <li><i class="fa-solid fa-check-circle"></i> Data Entry</li>
+                    <li><i class="fa-solid fa-check-circle"></i> Graphics Designing (T-Shirt Design)</li>
+                </ul>
+            </div>
+            <p><strong>Note:</strong> In 4 skills mein se kisi bhi <strong>ek skill</strong> ki requirement hai.</p>
+            <div class="highlight-box">
+                <i class="fa-solid fa-clock"></i> Aap apna account register karein. <strong>24 hours</strong> ke andar hum aapko ek task send karenge, jise aapko <strong>3 days</strong> ke andar complete karna hoga.
+            </div>
+            <button class="back-btn" onclick="closeHelpPage()">Back to Registration</button>
+        </div>
+    </div>
+
+    <script>
+        let selectedSkill = "";
+        let selectedFee = 299;
+
+        function selectPackage(element, packageName, feeAmount) {
+            const cards = document.querySelectorAll('.package-card');
+            cards.forEach(card => card.classList.remove('selected'));
+            element.classList.add('selected');
+            selectedSkill = packageName;
+            selectedFee = feeAmount;
+        }
+
+        function openRegistrationForm() {
+            if (!selectedSkill) {
+                document.getElementById('selectJobModal').style.display = 'flex';
+                return;
+            }
+            document.getElementById('skillSelectionPage').style.display = 'none';
+            document.getElementById('registrationFormPage').style.display = 'block';
+            document.getElementById('bannerTitle').innerText = "Complete Registration";
+            document.getElementById('displaySelectedSkill').innerText = selectedSkill;
+            
+            document.getElementById('displayFeeSummary').innerText = "₹" + selectedFee;
+            document.getElementById('qrAmountText').innerText = "Scan QR Code to Pay ₹" + selectedFee;
+            document.getElementById('payFeeButton').innerHTML = '<i class="fa-solid fa-lock"></i> Register Fee ₹' + selectedFee + ' - Pay';
+
+            window.scrollTo(0, 0);
+        }
+
+        function closeSelectJobModal() {
+            document.getElementById('selectJobModal').style.display = 'none';
+        }
+
+        function goBackToSkills() {
+            document.getElementById('registrationFormPage').style.display = 'none';
+            document.getElementById('skillSelectionPage').style.display = 'block';
+            document.getElementById('bannerTitle').innerText = "Register Account";
+            window.scrollTo(0, 0);
+        }
+
+        function handleVerification(event) {
+            event.preventDefault();
+            document.getElementById('checkingModal').style.display = 'flex';
+
+            setTimeout(function() {
+                document.getElementById('checkingModal').style.display = 'none';
+                document.getElementById('resultModal').style.display = 'flex';
+            }, 3000);
+        }
+
+        function closeResultModal() {
+            document.getElementById('resultModal').style.display = 'none';
+        }
+
+        function openHelpPage() {
+            document.getElementById('helpPage').style.display = 'block';
+        }
+
+        function closeHelpPage() {
+            document.getElementById('helpPage').style.display = 'none';
+        }
+    </script>
+
+</body>
+</html>
